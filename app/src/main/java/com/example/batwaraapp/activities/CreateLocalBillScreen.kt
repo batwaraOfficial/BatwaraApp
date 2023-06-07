@@ -1,8 +1,7 @@
 package com.example.batwaraapp.activities
 
-import android.os.Binder
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.example.batwaraapp.R
 import com.example.batwaraapp.databinding.ActivityCreateLocalBillScreenBinding
