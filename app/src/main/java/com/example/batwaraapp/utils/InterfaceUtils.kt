@@ -33,7 +33,7 @@ object InterfaceUtils {
      * Pass isAnimated==true to animate clicks.
      * Puts some wait time in-case user clicks multiple times on same view.
      * */
-    fun View.uniClick(isAnimated: Boolean = false, debounceWaitTime: Int = 520, onClickFunctionality: () -> Unit) {
+    fun View.uniClick(isAnimated: Boolean = true, debounceWaitTime: Int = 520, onClickFunctionality: () -> Unit) {
         fun animateView() {
             val animX = ObjectAnimator.ofFloat(this, "scaleX", 1.0f, 0.9f, 1.0f)
             val animY = ObjectAnimator.ofFloat(this, "scaleY", 1.0f, 0.9f, 1.0f)
