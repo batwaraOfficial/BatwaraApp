@@ -2,27 +2,36 @@ package com.example.batwaraapp.activities
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.widget.SearchView
+import android.util.Log
+import android.view.WindowManager
 import androidx.activity.result.contract.ActivityResultContract
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doOnTextChanged
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.batwaraapp.Constants.TAGS_LIST
 import com.example.batwaraapp.R
+import com.example.batwaraapp.adapters.GroupsTagsAdapter
 import com.example.batwaraapp.adapters.LocalGroupAdapter
 import com.example.batwaraapp.databinding.ActivityCreateLocalSplitGroupBinding
+import com.example.batwaraapp.databinding.GroupDescriptionWindowBinding
 import com.example.batwaraapp.datamodels.UserModel
+import com.example.batwaraapp.datamodels.UserTag
 import com.example.batwaraapp.utils.InterfaceUtils.uniClick
 import com.example.batwaraapp.viewmodels.LocalSplitGroupViewModel
-import com.example.batwaraapp.viewmodels.ProfileViewModel
-import java.util.ArrayList
+
 
 class CreateLocalSplitGroup : AppCompatActivity() {
 
     private lateinit var binding: ActivityCreateLocalSplitGroupBinding
     private lateinit var adapter: LocalGroupAdapter
+    private lateinit var _adapter: GroupsTagsAdapter
     private var createLocalBillScreen = registerForActivityResult(CreateLocalBillScreen) {}
     private val vm: LocalSplitGroupViewModel by lazy {
         ViewModelProvider(this).get(LocalSplitGroupViewModel::class.java)
@@ -86,7 +95,36 @@ class CreateLocalSplitGroup : AppCompatActivity() {
         binding.createGroupButton.uniClick {
             if (vm.currentMemberList.value.isNullOrEmpty() || vm.currentMemberList.value?.size == 1) setErrorString("At least 2 members required to create a Group!!")
             else {
+                /**
+                 * Create Group Description Dialog.
+                 * */
+                val _binding = GroupDescriptionWindowBinding.inflate(layoutInflater)
+                val dialog = AlertDialog.Builder(this).setView(_binding.root).create()
+                dialog.setCanceledOnTouchOutside(true)
+                dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                dialog.window?.addFlags(WindowManager.LayoutParams.FLAG_BLUR_BEHIND)
+                _adapter = GroupsTagsAdapter()
+                val gridLayoutManager = GridLayoutManager(applicationContext, 4, LinearLayoutManager.HORIZONTAL, false)
+                _binding.recyclerView2.setLayoutManager(gridLayoutManager)
+                _binding.recyclerView2.adapter = _adapter
+                _adapter.setOnTagClickListener {
+                    vm.selectTag(it)
+                    Log.d("kkg", "${it}")
+                }
+                _binding.saveGroup.uniClick {
+                    dialog.dismiss()
+                }
 
+                // init tags list
+                var tempList: ArrayList<UserTag> = ArrayList()
+                for(i in TAGS_LIST) tempList.add(UserTag(tag = i))
+
+                vm.tagsList.observe(this) {
+                    _adapter.setDataSet(it)
+                }
+
+                vm.tagsList.value = tempList
+                dialog.show()
             }
         }
     }

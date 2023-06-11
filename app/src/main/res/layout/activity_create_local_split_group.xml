@@ -57,7 +57,7 @@
                     android:layout_marginTop="2dp"
                     android:text="Add members to create a group."
                     android:textColor="@color/white"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     app:layout_constraintEnd_toEndOf="@+id/materialTextView2"
                     app:layout_constraintStart_toStartOf="@+id/materialTextView2"
                     app:layout_constraintTop_toBottomOf="@+id/materialTextView2" />
@@ -149,6 +149,7 @@
             android:padding="40dp"
             app:visible="@{(vm.currentMemberList == null || vm.currentMemberList.size() == 0)}"
             android:src="@drawable/empty_chairs"
+            android:paddingVertical="5dp"
             app:layout_constraintBottom_toTopOf="@+id/createGroupButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -168,6 +169,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
