@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:backgroundTint="@color/white"
+        app:cardCornerRadius="10dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/materialCardView5"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                app:cardCornerRadius="0dp"
+                app:cardElevation="10dp"
+                android:backgroundTint="@color/main_background_dark"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:elevation="10dp"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="10dp"
+                android:text="Group Details"
+                app:layout_constraintBottom_toBottomOf="@+id/materialCardView5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/materialTextView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="43dp"
+                android:text="Add Group Name"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/materialCardView5" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/groupNameText"
+                android:layout_width="200dp"
+                android:maxLength="40"
+                android:textColor="@color/black"
+                android:hint="i.e, FamilyGroup, etc."
+                android:layout_marginTop="4dp"
+                android:paddingHorizontal="5dp"
+                android:textSize="13sp"
+                android:textColorHint="@color/light_grey"
+                android:background="@drawable/edit_text_bg"
+                android:layout_height="35dp"
+                app:layout_constraintStart_toStartOf="@+id/materialTextView4"
+                app:layout_constraintTop_toBottomOf="@+id/materialTextView4" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/materialTextView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/black"
+                android:text="Add Group Description"
+                app:layout_constraintStart_toStartOf="@+id/groupNameText"
+                app:layout_constraintTop_toBottomOf="@+id/groupNameText" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/groupDescriptionText"
+                android:layout_width="200dp"
+                android:maxLength="200"
+                android:paddingHorizontal="5dp"
+                android:textSize="13sp"
+                android:textColor="@color/black"
+                android:hint="i.e, related to dinner, etc."
+                android:layout_marginTop="4dp"
+                android:textColorHint="@color/light_grey"
+                android:background="@drawable/edit_text_bg"
+                android:layout_height="35dp"
+                app:layout_constraintStart_toStartOf="@+id/materialTextView5"
+                app:layout_constraintTop_toBottomOf="@+id/materialTextView5" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/materialTextView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Add tags."
+                android:textColor="@color/deep_blue"
+                app:layout_constraintStart_toStartOf="@+id/groupDescriptionText"
+                app:layout_constraintTop_toBottomOf="@+id/groupDescriptionText" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView2"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="5dp"
+                tools:orientation="horizontal"
+                android:fadingEdge="horizontal"
+                android:fadingEdgeLength="10dp"
+                android:requiresFadingEdge="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/materialTextView6"
+                tools:listitem="@layout/item_user_tag" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/saveGroup"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:backgroundTint="@color/white"
+                android:clickable="true"
+                android:focusable="true"
+                android:padding="0dp"
+                app:strokeColor="@color/dark_grey"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/recyclerView2"
+                app:strokeWidth="1dp">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/baseline_post_add_24"
+                    android:tint="@color/error_red" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</layout>

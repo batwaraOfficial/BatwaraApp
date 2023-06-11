@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".activities.CreateLocalSplitGroup">
+
+    <data>
+        <variable
+            name="vm"
+            type="com.example.batwaraapp.viewmodels.LocalSplitGroupViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/main_toolbar"
+            android:elevation="10dp"/>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/materialCardView4"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:backgroundTint="@color/main_background_dark"
+            app:cardCornerRadius="0dp"
+            app:cardElevation="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar" >
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/main_background_dark">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/materialTextView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:letterSpacing="0.03"
+                    android:text="Create Group"
+                    android:textColor="@color/white"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/materialTextView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:letterSpacing="0.03"
+                    android:layout_marginTop="2dp"
+                    android:text="Add members to create a group."
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="@+id/materialTextView2"
+                    app:layout_constraintStart_toStartOf="@+id/materialTextView2"
+                    app:layout_constraintTop_toBottomOf="@+id/materialTextView2" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:backgroundTint="@color/deep_blue"
+                    app:cardCornerRadius="20dp"
+                    android:layout_marginHorizontal="90dp"
+                    android:layout_marginTop="20dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/materialTextView3" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/user_name_typer"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="120dp"
+            android:background="@drawable/bottom_nav_shape"
+            android:elevation="20dp"
+            android:focusable="true"
+            android:paddingHorizontal="20dp"
+            android:focusableInTouchMode="true"
+            android:hint="Enter Name"
+            android:textSize="13sp"
+            android:textColorHint="@color/light_grey"
+            android:textColor="@color/main_background_dark"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/add_person_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:backgroundTint="@color/deep_blue"
+            android:background="@color/deep_blue"
+            android:padding="0dp"
+            android:soundEffectsEnabled="true"
+            android:src="@drawable/baseline_group_add_24"
+            app:layout_constraintBottom_toBottomOf="@+id/user_name_typer"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/user_name_typer"
+            app:layout_constraintTop_toTopOf="@+id/user_name_typer" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@{vm.errorString}"
+            android:textColor="@color/error_red"
+            android:textSize="11sp"
+            android:layout_marginStart="15dp"
+            android:visibility="visible"
+            app:layout_constraintStart_toStartOf="@+id/user_name_typer"
+            app:layout_constraintTop_toBottomOf="@+id/user_name_typer"
+            app:visible="@{vm.errorString != null}"
+            tools:text="Atleast 2 people are required to create a group!!" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="28dp"
+            android:fadingEdge="horizontal"
+            android:fadingEdgeLength="10dp"
+            android:requiresFadingEdge="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toTopOf="@+id/createGroupButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/user_name_typer"
+            tools:itemCount="15"
+            tools:visibility="gone"
+            app:visible="@{!(vm.currentMemberList == null || vm.currentMemberList.size() == 0)}"
+            tools:listitem="@layout/item_local_person" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="28dp"
+            android:padding="40dp"
+            app:visible="@{(vm.currentMemberList == null || vm.currentMemberList.size() == 0)}"
+            android:src="@drawable/empty_chairs"
+            android:paddingVertical="5dp"
+            app:layout_constraintBottom_toTopOf="@+id/createGroupButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/user_name_typer" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/createGroupButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Create"
+            android:layout_marginBottom="5dp"
+            android:textColor="@color/main_background_dark"
+            android:backgroundTint="@color/white"
+            app:strokeColor="@color/main_background_dark"
+            app:strokeWidth="1dp"
+            app:cornerRadius="9dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
