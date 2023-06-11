@@ -15,12 +15,12 @@ class LandingFragment : Fragment() {
 
     private lateinit var binding: FragmentLandingBinding
     private val createLocalGroupScreen = registerForActivityResult(CreateLocalSplitGroup) {}
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding =  FragmentLandingBinding.inflate(inflater, container, false)
-
 
         binding.createGroupButton.uniClick(isAnimated = true) {
             createLocalGroupScreen.launch(CreateLocalSplitGroup.LaunchSet())
