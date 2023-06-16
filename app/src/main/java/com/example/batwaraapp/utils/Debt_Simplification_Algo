@@ -1,4 +1,5 @@
 package com.example.batwaraapp.utils;
 
-public class Debt_Simplification_Algo {
+object Debt_Simplification_Algo {
+    
 }
