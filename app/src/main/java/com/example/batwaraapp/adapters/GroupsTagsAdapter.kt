@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.batwaraapp.databinding.ItemUserTagBinding
 import com.example.batwaraapp.datamodels.UserTag
 import com.example.batwaraapp.utils.InterfaceUtils.uniClick
+import java.util.*
 
 class GroupsTagsAdapter : RecyclerView.Adapter<GroupsTagsAdapter.GroupTagsViewHolder>() {
 
@@ -33,6 +34,9 @@ class GroupsTagsAdapter : RecyclerView.Adapter<GroupsTagsAdapter.GroupTagsViewHo
     override fun onBindViewHolder(holder: GroupTagsViewHolder, position: Int) {
         holder.binding.tag = tagsList[position]
         holder.binding.tagButton.uniClick {
+            var temp = tagsList[position]
+            temp.isSelected = false
+            holder.binding.tag = temp
             onTagClickListener?.invoke(tagsList[position])
         }
     }
