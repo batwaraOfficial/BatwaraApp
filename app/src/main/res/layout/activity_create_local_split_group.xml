@@ -90,6 +90,7 @@
             android:focusableInTouchMode="true"
             android:hint="Enter Name"
             android:textSize="13sp"
+            android:maxLength="30"
             android:textColorHint="@color/light_grey"
             android:textColor="@color/main_background_dark"
             app:layout_constraintStart_toStartOf="parent"

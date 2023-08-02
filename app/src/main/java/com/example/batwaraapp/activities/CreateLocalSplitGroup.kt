@@ -5,7 +5,6 @@ import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.util.Log
 import android.view.WindowManager
 import androidx.activity.result.contract.ActivityResultContract
 import androidx.appcompat.app.AlertDialog
@@ -109,12 +108,11 @@ class CreateLocalSplitGroup : AppCompatActivity() {
                 _binding.recyclerView2.adapter = _adapter
                 _adapter.setOnTagClickListener {
                     vm.selectTag(it)
-                    Log.d("kkg", "${it}")
                 }
                 _binding.saveGroup.uniClick {
+                    onBackPressed()
                     dialog.dismiss()
                 }
-
                 // init tags list
                 var tempList: ArrayList<UserTag> = ArrayList()
                 for(i in TAGS_LIST) tempList.add(UserTag(tag = i))
@@ -122,7 +120,6 @@ class CreateLocalSplitGroup : AppCompatActivity() {
                 vm.tagsList.observe(this) {
                     _adapter.setDataSet(it)
                 }
-
                 vm.tagsList.value = tempList
                 dialog.show()
             }
