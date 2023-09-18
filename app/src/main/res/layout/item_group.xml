@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="group"
+            type="com.example.batwaraapp.datamodels.UserGroup" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:strokeColor="@color/black"
+        android:layout_marginHorizontal="10dp"
+        app:cardElevation="2dp"
+        android:layout_marginTop="12dp"
+        app:cardCornerRadius="25dp"
+        app:strokeWidth="0.5dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="250dp">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/groupName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:textColor="@color/black"
+                android:textSize="19sp"
+                android:textStyle="bold"
+                android:text="@{group.groupName}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Project Planning" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/membersList"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/dark_grey"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="@+id/groupName"
+                app:layout_constraintTop_toBottomOf="@+id/groupName"
+                android:text="Vinayak, Sahil, Tarun.." />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/materialTextView7"
+                android:layout_width="190dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/light_grey"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="@+id/membersList"
+                app:layout_constraintTop_toBottomOf="@+id/membersList"
+                android:text="About the project planning and the outings" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/materialCardView6"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginHorizontal="40dp"
+                app:cardCornerRadius="5dp"
+                android:backgroundTint="@color/light_grey"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/materialTextView7" />
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginTop="2dp"
+                android:backgroundTint="@color/white"
+                android:clickable="false"
+                android:letterSpacing="0.03"
+                android:textAllCaps="false"
+                android:textSize="11sp"
+                app:cornerRadius="100dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/materialCardView6"
+                app:strokeColor="@color/light_grey"
+                app:strokeWidth="1dp"
+                android:text="Expenses: 5" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="10dp"
+                android:src="@drawable/baseline_bookmark_remove_24"
+                android:tint="@color/deep_blue"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</layout>

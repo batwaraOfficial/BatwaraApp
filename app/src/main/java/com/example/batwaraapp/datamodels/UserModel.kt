@@ -9,5 +9,8 @@ import kotlinx.parcelize.Parcelize
 data class UserModel(
     val userId: Int? = null,
     val username: String? = null,
-    val name: String? = null
+    val name: String? = null,
+    var userGroups: ArrayList<UserGroup>? = null,
+    var number: String? = null,
+    var isSelected: Boolean = false
 ) : Parcelable

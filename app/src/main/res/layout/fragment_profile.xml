@@ -20,7 +20,17 @@
             android:backgroundTint="@color/dark_grey"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent" >
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Vinayak Mishra"
+                android:textColor="@color/white"
+                android:layout_gravity="center"
+                android:textSize="20sp"/>
+
+        </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/materialCardView3"
@@ -56,15 +66,30 @@
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/materialTextView12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
             android:text="Email: vinayakfredrics@gmail.com"
             android:textColor="@color/white"
             android:textSize="13sp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/materialCardView3" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/groupsButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="32dp"
+            android:backgroundTint="@color/main_background_dark"
+            android:text="Groups"
+            android:textColor="@color/teal_700"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/materialTextView12"
+            app:strokeColor="@color/teal_700"
+            app:strokeWidth="3dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

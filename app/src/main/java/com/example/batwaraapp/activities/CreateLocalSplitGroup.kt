@@ -23,7 +23,7 @@ import com.example.batwaraapp.databinding.GroupDescriptionWindowBinding
 import com.example.batwaraapp.datamodels.UserModel
 import com.example.batwaraapp.datamodels.UserTag
 import com.example.batwaraapp.utils.InterfaceUtils.uniClick
-import com.example.batwaraapp.viewmodels.LocalSplitGroupViewModel
+import com.example.batwaraapp.viewmodels.CreateGroupViewModel
 
 
 class CreateLocalSplitGroup : AppCompatActivity() {
@@ -32,8 +32,8 @@ class CreateLocalSplitGroup : AppCompatActivity() {
     private lateinit var adapter: LocalGroupAdapter
     private lateinit var _adapter: GroupsTagsAdapter
     private var createLocalBillScreen = registerForActivityResult(CreateLocalBillScreen) {}
-    private val vm: LocalSplitGroupViewModel by lazy {
-        ViewModelProvider(this).get(LocalSplitGroupViewModel::class.java)
+    private val vm: CreateGroupViewModel by lazy {
+        ViewModelProvider(this).get(CreateGroupViewModel::class.java)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

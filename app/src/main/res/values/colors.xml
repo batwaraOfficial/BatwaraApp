@@ -12,10 +12,14 @@
     <color name="dark_grey">#2D2D2D</color>
     <color name="light_grey">#6F6F6F</color>
     <color name="deep_blue">#2196F3</color>
+    <color name="light_blue">#B7DCFA</color>
     <color name="new_blue">#1A1540</color>
     <color name="main_background_dark">#1E272C</color>
 <!--    <color name="main_background_dark">#1E272C</color>-->
 
     <color name="error_red">#FD3A3A</color>
+    <color name="light_grey_1">#BDBDBD</color>
+    <color name="light_grey_2">#EBEBEB</color>
+
 
 </resources>

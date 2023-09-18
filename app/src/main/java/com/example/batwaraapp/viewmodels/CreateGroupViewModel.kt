@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import com.example.batwaraapp.datamodels.UserModel
 import com.example.batwaraapp.datamodels.UserTag
 
-class LocalSplitGroupViewModel : ViewModel() {
+class CreateGroupViewModel : ViewModel() {
 
     var currentName = MutableLiveData<String?>("")
     var errorString = MutableLiveData<String?>(null)

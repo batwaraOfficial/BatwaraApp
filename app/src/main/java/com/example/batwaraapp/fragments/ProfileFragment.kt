@@ -7,7 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.example.batwaraapp.R
+import com.example.batwaraapp.activities.GroupsScreen
 import com.example.batwaraapp.databinding.FragmentProfileBinding
+import com.example.batwaraapp.utils.InterfaceUtils.uniClick
 import com.example.batwaraapp.viewmodels.ProfileViewModel
 
 class ProfileFragment : Fragment() {
@@ -17,11 +19,17 @@ class ProfileFragment : Fragment() {
         ViewModelProvider(this).get(ProfileViewModel::class.java)
     }
 
+    val createGroupsScreen = registerForActivityResult(GroupsScreen) {}
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding =  FragmentProfileBinding.inflate(inflater, container, false)
+
+        binding.groupsButton.uniClick(true) {
+            createGroupsScreen.launch(GroupsScreen.LaunchSet())
+        }
 
         return binding.root
     }

@@ -18,7 +18,12 @@ class CreateLocalBillScreen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_create_local_bill_screen)
+        supportActionBar?.hide()
 
+        /**
+         * Add connectivity to activities and back buttons and test screens.
+         * Add few items to home screens.
+         * */
     }
 
     /**
