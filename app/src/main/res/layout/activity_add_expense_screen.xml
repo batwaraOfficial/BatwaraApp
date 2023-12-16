@@ -7,7 +7,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        >
+        android:background="@color/white">
 
         <include
             android:id="@+id/toolbar"
@@ -83,6 +83,7 @@
             android:layout_height="50dp"
             android:layout_marginStart="40dp"
             app:cardCornerRadius="8dp"
+            android:backgroundTint="@color/main_background_dark"
             android:layout_marginTop="100dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/materialCardView4"
@@ -93,7 +94,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="N/A"
+                android:text="Giver"
+                android:textColor="@color/white"
                 android:textAlignment="center"
                 android:textSize="14sp"
                 tools:layout_editor_absoluteX="52dp"
@@ -106,6 +108,7 @@
             android:layout_width="100dp"
             android:layout_height="50dp"
             app:cardCornerRadius="8dp"
+            android:backgroundTint="@color/main_background_dark"
             android:layout_marginEnd="40dp"
             app:layout_constraintBottom_toBottomOf="@+id/giverCard"
             app:layout_constraintEnd_toEndOf="parent"
@@ -117,7 +120,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="N/A"
+                android:text="Recipient"
+                android:textColor="@color/white"
                 android:textAlignment="center"
                 android:textSize="14sp"
                 tools:layout_editor_absoluteX="52dp"
@@ -133,9 +137,11 @@
             android:background="@drawable/edit_text_bg"
             android:hint="Enter Amount"
             android:inputType="number"
-            android:maxLength="5"
+            android:maxLength="6"
             android:layout_marginTop="50dp"
             android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/giverCard" />
@@ -148,14 +154,17 @@
             android:layout_marginTop="32dp"
             android:background="@drawable/edit_text_bg"
             android:hint="Add Description.."
-            android:inputType="number"
-            android:maxLength="5"
+            android:inputType="text"
+            android:textColorHint="@color/black"
+            android:maxLength="30"
+            android:textColor="@color/black"
             android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/amountInput" />
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/saveButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="28dp"

@@ -5,7 +5,8 @@
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="350dp"
+        android:layout_height="300dp"
+        android:background="@color/white"
         app:strokeWidth="1dp"
         app:strokeColor="@color/main_background_dark"
         app:cardCornerRadius="10dp">
@@ -17,7 +18,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintBottom_toTopOf="@+id/doneButton"
                 app:layout_constraintEnd_toEndOf="parent"

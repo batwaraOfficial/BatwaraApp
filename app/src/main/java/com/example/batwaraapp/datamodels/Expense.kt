@@ -7,12 +7,19 @@ import kotlinx.parcelize.Parcelize
 @Keep
 @Parcelize
 data class Expense (
-    var expenseId: Int? = null,
-    var groupId: String? = null,
-    var transactionAmount: Int? = null,
-    var expenseGiverId: Int? = null,
+    /**
+     * Include following in firebase.
+     * @param expenseDescription
+     * @param transactionAmount
+     * @param expenseGiverId
+     * @param expenseGiverName
+     * @param expenseTakerIds
+     * @param expenseTakerNames
+     * */
+    var transactionAmount: Int? = null, // amount
+    var expenseGiverId: Int? = null, // index of giver
     var expenseGiverName: String? = null,
-    var expenseTakerId: Int? = null,
-    var expenseTakerName: String? = null,
+    var expenseTakerIds: ArrayList<Int>? = null, // index of takers
+    var expenseTakerNames: ArrayList<String>? = null,
     var expenseDescription: String? = null
 ): Parcelable

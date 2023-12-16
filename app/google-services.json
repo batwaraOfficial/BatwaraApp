@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "936058581425",
+    "project_id": "bill-splitter---1",
+    "storage_bucket": "bill-splitter---1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:936058581425:android:3eb424c3163258d445cd90",
+        "android_client_info": {
+          "package_name": "com.example.batwaraapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAjW5WObVc7QAh0uESr5VDyqOgIOUL4zM8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

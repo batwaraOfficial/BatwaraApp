@@ -27,6 +27,15 @@ class GroupsAdapter : RecyclerView.Adapter<GroupsAdapter.GroupViewHolder>() {
     inner class GroupViewHolder(var binding: ItemGroupBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(userGroup: UserGroup) {
             binding.group = userGroup
+            var memList = ""
+            for(i in 0 until userGroup.groupMembers?.size!!) {
+                if(i == userGroup.groupMembers?.size!! -1) {
+                    memList += " and ${userGroup.groupMembers!![i].name}."
+                    break
+                }
+                memList += userGroup.groupMembers!![i].name + ","
+            }
+            binding.membersList.text = memList
             binding.root.uniClick (true) {
                 onGroupClickListener?.invoke(userGroup)
             }
@@ -38,7 +47,7 @@ class GroupsAdapter : RecyclerView.Adapter<GroupsAdapter.GroupViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: GroupViewHolder, position: Int) {
-
+        holder.bind(groupList[position])
     }
 
     override fun getItemCount(): Int  = groupList.size

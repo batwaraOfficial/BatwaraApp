@@ -2,10 +2,13 @@ package com.example.batwaraapp.activities
 
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContract
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -22,22 +25,29 @@ import com.example.batwaraapp.databinding.ActivityCreateLocalSplitGroupBinding
 import com.example.batwaraapp.databinding.GroupDescriptionWindowBinding
 import com.example.batwaraapp.datamodels.UserModel
 import com.example.batwaraapp.datamodels.UserTag
+import com.example.batwaraapp.utils.EmailForUse
 import com.example.batwaraapp.utils.InterfaceUtils.uniClick
+import com.example.batwaraapp.utils.SharedPrefsKeys
 import com.example.batwaraapp.viewmodels.CreateGroupViewModel
 
 
-class CreateLocalSplitGroup : AppCompatActivity() {
+class CreateGroupScreen : AppCompatActivity() {
 
     private lateinit var binding: ActivityCreateLocalSplitGroupBinding
     private lateinit var adapter: LocalGroupAdapter
     private lateinit var _adapter: GroupsTagsAdapter
-    private var createLocalBillScreen = registerForActivityResult(CreateLocalBillScreen) {}
     private val vm: CreateGroupViewModel by lazy {
         ViewModelProvider(this).get(CreateGroupViewModel::class.java)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        /**
+         * User Key common in all activities for doing DB operations
+         * */
+        val sharedPreferences: SharedPreferences? = this.getSharedPreferences(SharedPrefsKeys.MAIN_PREF_KEY, MODE_PRIVATE)
+        val authPrefKey = sharedPreferences?.getString(SharedPrefsKeys.AUTH_PREF_KEY, "")
+        val userKey = authPrefKey?.let { EmailForUse.getFirstPartEmail(it) }
 
         /**
          * Setting up binding.
@@ -82,7 +92,7 @@ class CreateLocalSplitGroup : AppCompatActivity() {
                 }
             }
             if(!errorExists) {
-                vm.addMember(UserModel(username = vm.currentName.value))
+                vm.addMember(UserModel(name = vm.currentName.value))
                 binding.userNameTyper.text?.clear()
             }
         }
@@ -103,24 +113,35 @@ class CreateLocalSplitGroup : AppCompatActivity() {
                 dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                 dialog.window?.addFlags(WindowManager.LayoutParams.FLAG_BLUR_BEHIND)
                 _adapter = GroupsTagsAdapter()
+
                 val gridLayoutManager = GridLayoutManager(applicationContext, 4, LinearLayoutManager.HORIZONTAL, false)
                 _binding.recyclerView2.setLayoutManager(gridLayoutManager)
                 _binding.recyclerView2.adapter = _adapter
                 _adapter.setOnTagClickListener {
                     vm.selectTag(it)
                 }
+
                 _binding.saveGroup.uniClick {
-                    onBackPressed()
-                    dialog.dismiss()
+                    Toast.makeText(this, "Please Wait.", Toast.LENGTH_SHORT).show()
+                    if (userKey != null) {
+                        vm.addGroupData(userKey, _binding.groupNameText.text.toString(), _binding.groupDescriptionText.text.toString(), {
+                            Toast.makeText(this, "Group Saved.", Toast.LENGTH_SHORT).show()
+                            onBackPressed()
+                            dialog.dismiss()
+                        }, {
+                            Log.d("kkg-CreateLocalSplitGroup", "onCreate:${it?.message}")
+                            Toast.makeText(this, it?.message, Toast.LENGTH_SHORT).show()
+                        })
+                    }
                 }
                 // init tags list
                 var tempList: ArrayList<UserTag> = ArrayList()
                 for(i in TAGS_LIST) tempList.add(UserTag(tag = i))
 
-                vm.tagsList.observe(this) {
+                vm.currentTags.observe(this) {
                     _adapter.setDataSet(it)
                 }
-                vm.tagsList.value = tempList
+                vm.currentTags.value = tempList
                 dialog.show()
             }
         }
@@ -139,7 +160,7 @@ class CreateLocalSplitGroup : AppCompatActivity() {
 
     companion object : ActivityResultContract<LaunchSet?, Boolean>() {
         override fun createIntent(context: Context, params: LaunchSet?): Intent {
-            val intent = Intent(context, CreateLocalSplitGroup::class.java).apply {}
+            val intent = Intent(context, CreateGroupScreen::class.java).apply {}
             return intent
         }
         override fun parseResult(resultCode: Int, intent: Intent?): Boolean {

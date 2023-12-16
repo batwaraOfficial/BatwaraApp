@@ -30,7 +30,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text="Vinayak"
-                android:text="@{member.username}"
+                android:text="@{member.name}"
                 android:layout_marginStart="20dp"
                 android:textColor="@color/main_background_dark"
                 android:textSize="13sp"
