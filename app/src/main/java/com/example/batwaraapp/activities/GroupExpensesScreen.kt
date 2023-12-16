@@ -6,6 +6,7 @@ import android.content.SharedPreferences
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContract
@@ -98,7 +99,9 @@ class GroupExpensesScreen : AppCompatActivity() {
                     if(vm.expensesList.value != null) {
                         vm.expensesList.value?.let {
                             val simplifiedExpense = expenseSimplifier.createGraphForDebts(peopleList ,it)
+                            Log.d("kkg-before", "onCreate: ")
                             showDialog(simplifiedExpense)
+                            Log.d("kkg-after", "onCreate: ")
                         }
                     } else {
                         Toast.makeText(this, "No Expenses.", Toast.LENGTH_SHORT).show()

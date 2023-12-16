@@ -57,6 +57,7 @@ public class TransactionReductionUtil {
 
         while((edgePos = getNonVisitedEdge(solver.getEdges())) != null) {
             //  Force recomputation of subsequent flows in the graph
+            Log.d("kkg-while", "createGraphForDebts: ");
             solver.recompute();
 
             //  Set source and sink in the flow graph
@@ -88,12 +89,19 @@ public class TransactionReductionUtil {
             //  Create a new graph
             solver = new Dinics(n, person);
             //  Add edges having remaining capacity
+
+            Log.d("kkg-solverbefore", "createGraphForDebts: ");
             solver.addEdges(newEdges);
+
+            Log.d("kkg-solverafter", "createGraphForDebts: ");
+
             //  Add an edge from source to sink in the new graph with obtained maximum flow as it's weight
             solver.addEdge(source, sink, maxFlow);
         }
         //  Print the edges in the graph
         String ans = solver.printEdges();
+        Log.d("kkg-ans", "createGraphForDebts: ");
+
         return ans;
     }
 
